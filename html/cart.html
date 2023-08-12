@@ -83,5 +83,69 @@
       integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
       crossorigin="anonymous"
     ></script>
+    <!-- JS for the cart page -->
+    <script>
+      function printProducts() {
+        let productListDiv = document.getElementById("productList");
+        let products = JSON.parse(localStorage.getItem("cartItem"));
+
+        // Loop through the products array
+        products?.forEach((product) => {
+          // Create a new div element for each product
+          const colDiv = document.createElement("div");
+          colDiv.classList.add("col-3");
+          colDiv.classList.add("col-sm-6");
+          colDiv.classList.add("col-md-4");
+          colDiv.classList.add("col-lg-3");
+          colDiv.classList.add("col-xl-3");
+          colDiv.classList.add("my-2");
+
+          const productDiv = document.createElement("div");
+          productDiv.classList.add("card");
+          const imageElement = document.createElement("img");
+          imageElement.classList.add("card-img-top");
+          imageElement.src = product.image;
+          imageElement.alt = product.name;
+          imageElement.height = 300;
+
+          const cardBody = document.createElement("div");
+          cardBody.classList.add("card-body");
+
+          // Create and set the content for each product
+          const nameElement = document.createElement("h5");
+          nameElement.classList.add("card-title");
+          nameElement.innerHTML = `<b>${product.name}</b>`;
+
+          const priceElement = document.createElement("p");
+          priceElement.classList.add("card-text");
+          priceElement.innerHTML = `Price: <b>$${product.price.toFixed(2)}</b>`;
+
+          const quantityElement = document.createElement("p");
+          quantityElement.classList.add("card-text");
+          quantityElement.innerHTML = `Quantity: <b>${product.quantity}</b>`;
+
+          const buttonElement = document.createElement("button");
+          buttonElement.classList.add("btn");
+          buttonElement.classList.add("btn-primary");
+          buttonElement.textContent = "Add To Bag";
+          buttonElement.addEventListener("click", function () {
+            addToBag(product.id);
+          });
+
+          // Append the content to the product div
+
+          cardBody.appendChild(nameElement);
+          cardBody.appendChild(priceElement);
+          cardBody.appendChild(quantityElement);
+          cardBody.appendChild(buttonElement);
+          productDiv.appendChild(imageElement);
+          productDiv.appendChild(cardBody);
+          // Append the product div to the main div
+          colDiv.appendChild(productDiv);
+          productListDiv.appendChild(colDiv);
+        });
+      }
+      printProducts();
+    </script>
   </body>
 </html>
