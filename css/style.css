@@ -12,3 +12,22 @@ main {
 section {
   margin-bottom: 0px !important;
 }
+a {
+  text-decoration: none !important;
+  cursor: pointer;
+}
+
+p {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+}
+.primary {
+  color: #9181f4;
+}
