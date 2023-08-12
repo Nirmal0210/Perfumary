@@ -69,6 +69,29 @@
       </div>
     </nav>
 
-    
+    <main>
+        <div class="search-group">
+          <input
+            type="search"
+            name=""
+            class="search-bar"
+            placeholder="Search"
+            id="search-input"
+          />
+          <ion-icon
+            style="padding: 10px"
+            class="btn btn-primary"
+            name="search-outline"
+            onclick="updateResults()"
+          ></ion-icon>
+        </div>
+        <div class="m-2">
+          <div id="main-div">
+            <div class="row" id="productList"></div>
+          </div>
+        </div>
+      </main>
+  
+     
   </body>
 </html>
