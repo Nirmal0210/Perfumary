@@ -31,3 +31,20 @@ h4 {
 .primary {
   color: #9181f4;
 }
+.nav-link {
+  color: white !important;
+}
+.navbar-expand-lg .navbar-collapse {
+  justify-content: end !important;
+}
+#userData {
+  color: white;
+  font-size: 25px;
+  margin: 0px 10px;
+}
+.nav-logo {
+  margin: 0px 15px;
+}
+main {
+  padding: 20px;
+}
