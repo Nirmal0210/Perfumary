@@ -168,3 +168,27 @@
         updateProfile("user1", updatedData);
       });
 
+      function updateProfile(key, data) {
+        const transaction = db.transaction(["users"], "readwrite");
+        const objectStore = transaction.objectStore("users");
+
+        objectStore.openCursor().onsuccess = (event) => {
+          const cursor = event.target.result;
+          if (cursor) {
+            console.log(cursor);
+            cursor.username = data.username;
+            cursor.email = data.email;
+            cursor.password = data.password;
+
+            const request = cursor.update(data);
+            request.onsuccess = () => {
+              alert("Data Updated Successfully");
+            };
+          } else {
+            console.log("Entries displayed.");
+          }
+        };
+      }
+    </script>
+  </body>
+</html>
