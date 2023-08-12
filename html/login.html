@@ -39,16 +39,20 @@
             <div class="left-box">
               <h1>LOGIN</h1>
               <p>How to i get started lorem ipsum dolor at?</p>
-    
+
               <div class="form-box">
                 <input type="email" placeholder="email" id="email" />
                 <br />
                 <input type="password" placeholder="password" id="password" />
                 <br />
-                <button class="login-btn" onclick="loginUser()">Login Now</button>
+                <button class="login-btn" onclick="loginUser()">
+                  Login Now
+                </button>
               </div>
-    
-              <p>New user ? <a class="primary" href="register.html">Register</a></p>
+
+              <p>
+                New user ? <a class="primary" href="register.html">Register</a>
+              </p>
             </div>
           </div>
           <div class="col-lg-6 col-sm-12">
@@ -64,16 +68,62 @@
           const DB_NAME = "myDatabase";
           const DB_VERSION = 3;
           let db;
-    
+
           const request = indexedDB.open(DB_NAME, DB_VERSION);
-    
+
           request.onerror = (event) => {
             console.error("Error opening database:", event.target.error);
           };
-    
+
           request.onsuccess = (event) => {
             db = event.target.result;
             console.log("Database opened successfully");
             // You can perform database operations here or call other functions that use the `db` object.
           };
+          // Function to login a user using email and password
+          function loginUser() {
+            const transaction = db.transaction(["users"], "readonly");
+            const objectStore = transaction.objectStore("users");
+            const emailIndex = objectStore.index("email");
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            // Check if a user with the given email exists
+            const request = emailIndex.get(email);
+
+            request.onsuccess = (event) => {
+              const user = event.target.result;
+
+              if (!user) {
+                console.error("User with the provided email does not exist");
+                return;
+              }
+
+              // Verify the password
+              if (user.password === password) {
+                console.log("Login successful");
+                let currentUser = {
+                  username: user.username,
+                  email: user.email,
+                  password: user.password,
+                };
+                localStorage.setItem(
+                  "currentUser",
+                  JSON.stringify(currentUser)
+                );
+                window.location = "index.html";
+                // Perform any additional actions after successful login, e.g., redirecting to a dashboard page.
+              } else {
+                console.error("Incorrect password");
+              }
+            };
+
+            request.onerror = (event) => {
+              console.error("Error checking user login:", event.target.error);
+            };
+          }
+        </script>
+      </body>
+    </html>
+  </body>
 </html>
