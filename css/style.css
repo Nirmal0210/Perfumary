@@ -148,3 +148,22 @@ form button {
     padding: 10px;
     border: none;
   }
+  ion-icon {
+  padding: 10px;
+  font-size: 25px !important;
+}
+
+.profile-card {
+  height: 500px;
+  width: 400px;
+  border-radius: 10px;
+  margin: auto;
+  box-shadow: 10px 10px 20px rgba(128, 128, 128, 0.5);
+}
+
+.profile-img {
+  height: 200px;
+  width: 200px;
+  margin: auto;
+  padding: 1rem;
+}
