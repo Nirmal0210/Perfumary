@@ -98,6 +98,128 @@
       </footer>
   
       
-     
+     <!-- Bootstrap JS -->
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+     <script>
+       // Get Currentuser and Store in localstorage
+ 
+       let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+       let products = JSON.parse(localStorage.getItem("products"));
+ 
+       document.getElementById("userData").innerHTML +=
+         " " + currentUser.username.toUpperCase();
+ 
+       // Sample array of objects with keys name, price, quantity, and image
+       // const prod = [
+       //     {
+       //       name: "Armaf Clud De Nuit",
+       //       price: 19,
+       //       quantity: 32,
+       //       image: "../imgs/armaf.jpg",
+       //       id: 5,
+       //     },
+       //     {
+       //       name: "Armaf Clud De Nuit",
+       //       price: 19,
+       //       quantity: 32,
+       //       image: "../imgs/armaf.jpg",
+       //       id: 6,
+       //     },
+       //     {
+       //       name: "Burberry",
+       //       price: 24.95,
+       //       quantity: 8,
+       //       image: "../imgs/burberry.jpg",
+       //       id: 2,
+       //     },
+       //     {
+       //       name: "Creed Aventus",
+       //       price: 7.49,
+       //       quantity: 12,
+       //       image: "../imgs/creed.jpg",
+       //       id: 3,
+       //     },
+       //     {
+       //       name: "Dior Sauvage",
+       //       price: 10.99,
+       //       quantity: 5,
+       //       image: "../imgs/dior.jpg",
+       //       id: 1,
+       //     },
+       //     {
+       //       name: "Versace Eros",
+       //       price: 17.49,
+       //       quantity: 13,
+       //       image: "../imgs/eors.jpg",
+       //       id: 4,
+       //     },
+       //   ];
+       //   localStorage.setItem("products", JSON.stringify(prod));
+ 
+     function printProducts(products) {
+         let productListDiv = document.getElementById("productList");
+         while (productListDiv.firstChild) {
+           productListDiv.removeChild(productListDiv.firstChild);
+         }
+         // let products = JSON.parse(localStorage.getItem("products"));
+         console.log(products);
+         // Loop through the products array
+         products?.forEach((product) => {
+           // Create a new div element for each product
+           const colDiv = document.createElement("div");
+           colDiv.classList.add("col-3");
+           colDiv.classList.add("col-sm-6");
+           colDiv.classList.add("col-md-4");
+           colDiv.classList.add("col-lg-3");
+           colDiv.classList.add("col-xl-3");
+           colDiv.classList.add("my-2");
+ 
+           const productDiv = document.createElement("div");
+           productDiv.classList.add("card");
+           const imageElement = document.createElement("img");
+           imageElement.classList.add("card-img-top");
+           imageElement.src = product.image;
+           imageElement.alt = product.name;
+           imageElement.height = 300;
+ 
+           const cardBody = document.createElement("div");
+           cardBody.classList.add("card-body");
+ 
+           // Create and set the content for each product
+           const nameElement = document.createElement("h5");
+           nameElement.classList.add("card-title");
+           nameElement.innerHTML = `<b>${product.name}</b>`;
+ 
+           const priceElement = document.createElement("p");
+           priceElement.classList.add("card-text");
+           priceElement.innerHTML = `Price: <b>$${product.price.toFixed(2)}</b>`;
+ 
+           const quantityElement = document.createElement("p");
+           quantityElement.classList.add("card-text");
+           quantityElement.innerHTML = `Quantity: <b>${product.quantity}</b>`;
+ 
+           const buttonElement = document.createElement("button");
+           buttonElement.classList.add("btn");
+           buttonElement.classList.add("btn-primary");
+           buttonElement.textContent = "Add To Bag";
+           buttonElement.addEventListener("click", function () {
+             addToBag(product.id);
+           });
+ 
+           // Append the content to the product div
+ 
+           cardBody.appendChild(nameElement);
+           cardBody.appendChild(priceElement);
+           cardBody.appendChild(quantityElement);
+           cardBody.appendChild(buttonElement);
+           productDiv.appendChild(imageElement);
+           productDiv.appendChild(cardBody);
+           // Append the product div to the main div
+           colDiv.appendChild(productDiv);
+           productListDiv.appendChild(colDiv);
+         });
+       }
+       printProducts(products);
+     </script>
   </body>
 </html>
