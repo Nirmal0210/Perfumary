@@ -48,3 +48,22 @@ h4 {
 main {
   padding: 20px;
 }
+
+section {
+  margin-bottom: 20px;
+}
+
+form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+form input,
+form button {
+  margin-bottom: 10px;
+}
+
+.nav-logo {
+  height: 60px;
+  width: 60px;
+}
