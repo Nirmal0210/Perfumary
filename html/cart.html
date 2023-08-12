@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perfumary</title>
+    <link rel="shortcut icon" href="../imgs/logo.ico" type="image/x-icon" />
+
+    <link rel="stylesheet" href="../css/style.css" />
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <nav class="navbar-expand-lg navbar navbar-dark bg-dark">
+      <div class="container-fluid">
+        <div class="d-flex align-items-center">
+          <img src="../imgs/perfumary.png" class="nav-logo" alt="nav-logo" />
+          <h1 class="my-0 mx-2" id="userData"></h1>
+        </div>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="./index.html"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./products.html">Products</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./profile.html">Profile</a>
+            </li>
+
+            <li>
+              <a href="./cart.html"
+                ><img
+                  src="../imgs/shopping-cart.png"
+                  width="40"
+                  height="40"
+                  alt="cart"
+                />
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Main section -->
+
+    <main>
+      <div class="m-2">
+        <h2 class="cart-page">Cart</h2>
+        <div id="main-div">
+          <div class="row" id="productList"></div>
+        </div>
+      </div>
+    </main>
+    <!-- Footer section -->
+    <footer class="bg-dark text-light py-2">
+      <div class="container text-center">
+        <p>&copy; 2023 Perfumary. All rights reserved.</p>
+      </div>
+    </footer>
+    <!-- Bootstrap JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+    <!-- JS for the cart page -->
+    <script>
+      function printProducts() {
+        let productListDiv = document.getElementById("productList");
+        let products = JSON.parse(localStorage.getItem("cartItem"));
+
+        // Loop through the products array
+        products?.forEach((product) => {
+          // Create a new div element for each product
+          const colDiv = document.createElement("div");
+          colDiv.classList.add("col-3");
+          colDiv.classList.add("col-sm-6");
+          colDiv.classList.add("col-md-4");
+          colDiv.classList.add("col-lg-3");
+          colDiv.classList.add("col-xl-3");
+          colDiv.classList.add("my-2");
+
+          const productDiv = document.createElement("div");
+          productDiv.classList.add("card");
+          const imageElement = document.createElement("img");
+          imageElement.classList.add("card-img-top");
+          imageElement.src = product.image;
+          imageElement.alt = product.name;
+          imageElement.height = 300;
+
+          const cardBody = document.createElement("div");
+          cardBody.classList.add("card-body");
+
+          // Create and set the content for each product
+          const nameElement = document.createElement("h5");
+          nameElement.classList.add("card-title");
+          nameElement.innerHTML = `<b>${product.name}</b>`;
+
+          const priceElement = document.createElement("p");
+          priceElement.classList.add("card-text");
+          priceElement.innerHTML = `Price: <b>$${product.price.toFixed(2)}</b>`;
+
+          const quantityElement = document.createElement("p");
+          quantityElement.classList.add("card-text");
+          quantityElement.innerHTML = `Quantity: <b>${product.quantity}</b>`;
+
+          const buttonElement = document.createElement("button");
+          buttonElement.classList.add("btn");
+          buttonElement.classList.add("btn-primary");
+          buttonElement.textContent = "Add To Bag";
+          buttonElement.addEventListener("click", function () {
+            addToBag(product.id);
+          });
+
+          // Append the content to the product div
+
+          cardBody.appendChild(nameElement);
+          cardBody.appendChild(priceElement);
+          cardBody.appendChild(quantityElement);
+          cardBody.appendChild(buttonElement);
+          productDiv.appendChild(imageElement);
+          productDiv.appendChild(cardBody);
+          // Append the product div to the main div
+          colDiv.appendChild(productDiv);
+          productListDiv.appendChild(colDiv);
+        });
+      }
+      printProducts();
+    </script>
+  </body>
+</html>
