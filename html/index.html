@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perfumary</title>
+    <link rel="shortcut icon" href="../imgs/logo.ico" type="image/x-icon" />
+
+    <link rel="stylesheet" href="../css/style.css" />
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <nav class="navbar-expand-lg navbar navbar-dark bg-dark">
+      <div class="container-fluid">
+        <div class="d-flex align-items-center">
+          <img src="../imgs/perfumary.png" class="nav-logo" alt="nav-logo" />
+          <h1 class="my-0 mx-2" id="userData"></h1>
+        </div>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="./index.html"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./products.html">Products</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./profile.html">Profile</a>
+            </li>
+
+            <li>
+              <a href="./cart.html"
+                ><img
+                  src="../imgs/shopping-cart.png"
+                  width="40"
+                  height="40"
+                  alt="cart"
+                />
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Main section -->
+    <main>
+      <section id="robotcarousel" class="carousel slide">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img
+              src="../imgs/armaf_club_de_nuit.jpg"
+              class="d-block"
+              alt="image1"
+              height="650px"
+              width="100%"
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="../imgs/dior_sauvage.jpg"
+              class="d-block"
+              alt="image2"
+              height="650px"
+              width="100%"
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="../imgs/burberry.jpg"
+              class="d-block"
+              alt="image3"
+              height="650px"
+              width="100%"
+            />
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#robotcarousel"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#robotcarousel"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </section>
+    </main>
+    <!-- 
+      <h1 class="review-head">Reviews from Customer</h1>
+      <div class="review">
+        <h3>Devansh Shah</h3>
+        <p>Dior is one of my favourite brand. Perfumery is one of the best perfume seller firm which provides good varieties of spray and delivery in time</p>
+       </div>
+       -->
+    <footer class="bg-dark text-light py-2">
+      <div class="container text-center">
+        <p>&copy; 2023 Perfumary. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+      document.getElementById("userData").innerHTML +=
+        " " + currentUser.username.toUpperCase();
+
+      // const perfumeArray = [
+      //   {
+      //     id: 1,
+      //     name: "Armaf Club De Nuit",
+      //     quantity: 18,
+      //     price: 120,
+      //     image: "../../imgs/armaf_club_de_nuit.jpg",
+      //   },
+      //   {
+      //     id: 2,
+      //     name: "Chanel Coco Mademoiselle",
+      //     quantity: 25,
+      //     price: 200,
+      //     image: "../../imgs/chanel_coco_mademoiselle.jpg",
+      //   },
+      //   {
+      //     id: 3,
+      //     name: "Dior Sauvage",
+      //     quantity: 10,
+      //     price: 150,
+      //     image: "../../imgs/dior_sauvage.jpg",
+      //   },
+      //   {
+      //     id: 4,
+      //     name: "Tom Ford Black Orchid",
+      //     quantity: 8,
+      //     price: 250,
+      //     image: "../../imgs/tom_ford_black_orchid.jpg",
+      //   },
+      //   {
+      //     id: 5,
+      //     name: "Versace Eros",
+      //     quantity: 15,
+      //     price: 100,
+      //     image: "../../imgs/versace_eros.jpg",
+      //   },
+      //   {
+      //     id: 6,
+      //     name: "Yves Saint Laurent Black Opium",
+      //     quantity: 20,
+      //     price: 160,
+      //     image: "../../imgs/yves_saint_laurent_black_opium.jpg",
+      //   },
+      //   {
+      //     id: 7,
+      //     name: "Paco Rabanne 1 Million",
+      //     quantity: 12,
+      //     price: 130,
+      //     image: "../../imgs/paco_rabanne_1_million.jpg",
+      //   },
+      //   {
+      //     id: 8,
+      //     name: "Gucci Bloom",
+      //     quantity: 30,
+      //     price: 180,
+      //     image: "../../imgs/gucci_bloom.jpg",
+      //   },
+      //   {
+      //     id: 9,
+      //     name: "Jo Malone English Pear & Freesia",
+      //     quantity: 22,
+      //     price: 120,
+      //     image: "../../imgs/jo_malone_english_pear_freesia.jpg",
+      //   },
+      //   {
+      //     id: 10,
+      //     name: "Calvin Klein CK One",
+      //     quantity: 28,
+      //     price: 50,
+      //     image: "../../imgs/calvin_klein_ck_one.jpg",
+      //   },
+      //   {
+      //     id: 11,
+      //     name: "Hermes Terre d'Hermes",
+      //     quantity: 7,
+      //     price: 220,
+      //     image: "../../imgs/hermes_terre_dhermes.jpg",
+      //   },
+      //   {
+      //     id: 12,
+      //     name: "Marc Jacobs Daisy",
+      //     quantity: 16,
+      //     price: 90,
+      //     image: "../../imgs/marc_jacobs_daisy.jpg",
+      //   },
+      //   {
+      //     id: 13,
+      //     name: "Prada Candy",
+      //     quantity: 9,
+      //     price: 110,
+      //     image: "../../imgs/prada_candy.jpg",
+      //   },
+      //   {
+      //     id: 14,
+      //     name: "Dolce & Gabbana Light Blue",
+      //     quantity: 14,
+      //     price: 140,
+      //     image: "../../imgs/dolce_gabbana_light_blue.jpg",
+      //   },
+      //   {
+      //     id: 15,
+      //     name: "Viktor & Rolf Flowerbomb",
+      //     quantity: 11,
+      //     price: 190,
+      //     image: "../../imgs/viktor_rolf_flowerbomb.jpg",
+      //   },
+      //   {
+      //     id: 16,
+      //     name: "Bvlgari Man in Black",
+      //     quantity: 6,
+      //     price: 170,
+      //     image: "../../imgs/bvlgari_man_in_black.jpg",
+      //   },
+      //   {
+      //     id: 17,
+      //     name: "Issey Miyake L'Eau d'Issey",
+      //     quantity: 23,
+      //     price: 100,
+      //     image: "../../imgs/issey_miyake_leau_dissey.jpg",
+      //   },
+      //   {
+      //     id: 18,
+      //     name: "Yves Saint Laurent La Nuit de L'Homme",
+      //     quantity: 17,
+      //     price: 150,
+      //     image: "../../imgs/yves_saint_laurent_la_nuit_de_lhomme.jpg",
+      //   },
+      //   {
+      //     id: 19,
+      //     name: "Givenchy Ange ou Demon",
+      //     quantity: 13,
+      //     price: 160,
+      //     image: "../../imgs/givenchy_ange_ou_demon.jpg",
+      //   },
+      //   {
+      //     id: 20,
+      //     name: "Jimmy Choo Fever",
+      //     quantity: 21,
+      //     price: 130,
+      //     image: "../../imgs/jimmy_choo_fever.jpg",
+      //   },
+      //   {
+      //     id: 21,
+      //     name: "Dior J'adore",
+      //     quantity: 19,
+      //     price: 170,
+      //     image: "../../imgs/dior_jadore.jpg",
+      //   },
+      //   {
+      //     id: 22,
+      //     name: "Bleu de Chanel",
+      //     quantity: 24,
+      //     price: 210,
+      //     image: "../../imgs/bleu_de_chanel.jpg",
+      //   },
+      //   {
+      //     id: 23,
+      //     name: "Yves Saint Laurent Mon Paris",
+      //     quantity: 29,
+      //     price: 180,
+      //     image: "../../imgs/yves_saint_laurent_mon_paris.jpg",
+      //   },
+      //   {
+      //     id: 24,
+      //     name: "Thierry Mugler Alien",
+      //     quantity: 11,
+      //     price: 140,
+      //     image: "../../imgs/thierry_mugler_alien.jpg",
+      //   },
+      //   {
+      //     id: 25,
+      //     name: "Bvlgari Omnia Crystalline",
+      //     quantity: 16,
+      //     price: 95,
+      //     image: "../../imgs/bvlgari_omnia_crystalline.jpg",
+      //   },
+      //   // ... (other objects)
+      // ];
+
+      // console.log(perfumeArray);
+      // localStorage.setItem("products", JSON.stringify(perfumeArray));
+    </script>
+  </body>
+</html>
