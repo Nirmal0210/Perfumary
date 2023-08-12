@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perfumary</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    />
+    <link rel="shortcut icon" href="../imgs/logo.ico" type="image/x-icon" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-dark">
+      <div class="container-fluid">
+        <div class="d-flex align-items-center">
+          <img src="../imgs/perfumary.png" class="nav-logo" alt="nav-logo" />
+          <h1 class="my-0 mx-2" id="userData"></h1>
+        </div>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="./index.html"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./products.html">Products</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./profile.html">Profile</a>
+            </li>
+
+            <li>
+              <a href="./cart.html"
+                ><img
+                  src="../imgs/shopping-cart.png"
+                  width="40"
+                  height="40"
+                  alt="cart"
+                />
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main class="py-4">
+      <section id="profile" class="bg-light">
+        <div class="container bg-white">
+          <div class="profile-card">
+            <div class="profile-img">
+              <img src="../imgs/perfumary.png" width="100%" height="100%" />
+            </div>
+            <div class="row p-4">
+              <div class="col-12">
+                <label for="inputEmail4" class="form-label">Email</label>
+                <input type="email" readonly class="form-control" id="email" />
+              </div>
+              <div class="col-12">
+                <label for="username" class="form-label">Username</label>
+                <input
+                  type="text"
+                  placeholder="Enter new username"
+                  class="form-control"
+                  id="username"
+                />
+              </div>
+              <div class="col-12">
+                <label for="inputPassword4" class="form-label">Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  placeholder="Enter new password"
+                />
+              </div>
+
+              <div class="col-6 my-2 p-2 text-center">
+                <button
+                  type="submit"
+                  id="updateProfileButton"
+                  class="btn btn-primary"
+                >
+                  Update
+                </button>
+              </div>
+              <div class="col-6 my-2 p-2 text-center">
+                <button
+                  type="submit"
+                  class="btn btn-danger"
+                  onclick="logoutUser()"
+                >
+                  Log Out
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-dark text-light py-2">
+      <div class="container text-center">
+        <p>&copy; 2023 Perfumary. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+      document.getElementById("userData").innerHTML +=
+        " " + currentUser.username.toUpperCase();
+      const updateButton = document.getElementById("updateProfileButton");
+      document.getElementById("email").value = currentUser.email;
+      document.getElementById("username").value = currentUser.username;
+      document.getElementById("password").value = currentUser.password;
+
+      const DB_NAME = "myDatabase";
+      const DB_VERSION = 3;
+      let db;
+
+      let request = indexedDB.open(DB_NAME, DB_VERSION);
+
+      request.onerror = (event) => {
+        console.error("Error opening database:", event.target.error);
+      };
+
+      request.onsuccess = (event) => {
+        db = event.target.result;
+        console.log("Database opened successfully");
+        // You can perform database operations here or call other functions that use the `db` object.
+      };
+
+      function logoutUser() {
+        localStorage.removeItem("currentUser");
+        window.location.href = "login.html";
+      }
+
+      updateButton.addEventListener("click", function () {
+        const email = document.getElementById("email").value;
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+        // Get input field values
+        const updatedData = {
+          email: email,
+          username: username,
+          password: password,
+          // ... and so on for other fields
+        };
+        localStorage.setItem("currentUser", JSON.stringify(updatedData));
+        // Perform actions to update and save profile changes in the database
+        updateProfile("user1", updatedData);
+      });
+
+      function updateProfile(key, data) {
+        const transaction = db.transaction(["users"], "readwrite");
+        const objectStore = transaction.objectStore("users");
+
+        objectStore.openCursor().onsuccess = (event) => {
+          const cursor = event.target.result;
+          if (cursor) {
+            console.log(cursor);
+            cursor.username = data.username;
+            cursor.email = data.email;
+            cursor.password = data.password;
+
+            const request = cursor.update(data);
+            request.onsuccess = () => {
+              alert("Data Updated Successfully");
+            };
+          } else {
+            console.log("Entries displayed.");
+          }
+        };
+      }
+    </script>
+  </body>
+</html>
