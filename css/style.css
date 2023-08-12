@@ -1,0 +1,14 @@
+/* General styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+main {
+  padding: 0px !important;
+}
+section {
+  margin-bottom: 0px !important;
+}
