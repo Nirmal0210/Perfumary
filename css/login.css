@@ -1,0 +1,11 @@
+/* Login Form */
+.left-box {
+  padding: 10rem 1rem;
+}
+.left-box h1 {
+  font-weight: bolder;
+  font-size: 45px;
+}
+.left-box p {
+  font-size: 20px;
+}
