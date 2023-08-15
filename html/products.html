@@ -108,52 +108,6 @@
       document.getElementById("userData").innerHTML +=
         " " + currentUser.username.toUpperCase();
 
-      // Sample array of objects with keys name, price, quantity, and image
-      // const prod = [
-      //     {
-      //       name: "Armaf Clud De Nuit",
-      //       price: 19,
-      //       quantity: 32,
-      //       image: "../imgs/armaf.jpg",
-      //       id: 5,
-      //     },
-      //     {
-      //       name: "Armaf Clud De Nuit",
-      //       price: 19,
-      //       quantity: 32,
-      //       image: "../imgs/armaf.jpg",
-      //       id: 6,
-      //     },
-      //     {
-      //       name: "Burberry",
-      //       price: 24.95,
-      //       quantity: 8,
-      //       image: "../imgs/burberry.jpg",
-      //       id: 2,
-      //     },
-      //     {
-      //       name: "Creed Aventus",
-      //       price: 7.49,
-      //       quantity: 12,
-      //       image: "../imgs/creed.jpg",
-      //       id: 3,
-      //     },
-      //     {
-      //       name: "Dior Sauvage",
-      //       price: 10.99,
-      //       quantity: 5,
-      //       image: "../imgs/dior.jpg",
-      //       id: 1,
-      //     },
-      //     {
-      //       name: "Versace Eros",
-      //       price: 17.49,
-      //       quantity: 13,
-      //       image: "../imgs/eors.jpg",
-      //       id: 4,
-      //     },
-      //   ];
-      //   localStorage.setItem("products", JSON.stringify(prod));
       const addToBag = (id) => {
         let cartItem = JSON.parse(localStorage.getItem("cartItem")) || []; // Initialize as an array or load from localStorage
         products = JSON.parse(localStorage.getItem("products"));
