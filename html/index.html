@@ -139,9 +139,10 @@
     ></script>
     <script>
       let currentUser = JSON.parse(localStorage.getItem("currentUser"));
-      document.getElementById("userData").innerHTML +=
-        " " + currentUser.username.toUpperCase();
-
+      if (currentUser)
+        document.getElementById("userData").innerHTML +=
+          " " + currentUser.username.toUpperCase();
+      else window.location = "index.html";
       const addPerfumes = () => {
         const perfumeArray = [
           {

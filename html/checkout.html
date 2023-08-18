@@ -14,7 +14,6 @@
       integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
       crossorigin="anonymous"
     />
-   
   </head>
   <body>
     <nav class="navbar-expand-lg navbar navbar-dark bg-dark">
@@ -99,6 +98,12 @@
     ></script>
     <!-- JS for the cart page -->
     <script>
+      let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+      if (currentUser)
+        document.getElementById("userData").innerHTML +=
+          " " + currentUser.username.toUpperCase();
+      else window.location = "index.html";
       let cartItems = JSON.parse(localStorage.getItem("cartItem"));
       let totalPay = 0;
       function generateCartItem(item) {

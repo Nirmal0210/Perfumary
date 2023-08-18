@@ -108,6 +108,11 @@
       // Get Currentuser and Store in localstorage
 
       let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+      if (currentUser)
+        document.getElementById("userData").innerHTML +=
+          " " + currentUser.username.toUpperCase();
+      else window.location = "index.html";
       let products = JSON.parse(localStorage.getItem("products"));
 
       document.getElementById("userData").innerHTML +=
