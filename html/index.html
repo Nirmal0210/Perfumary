@@ -148,7 +148,7 @@
             " " + currentUser.username.toUpperCase();
         else window.location = "login.html";
       }
-      const addPerfumes = () => {
+      function addPerfumes() {
         const perfumeArray = [
           {
             id: 1,
@@ -331,7 +331,7 @@
           localStorage.setItem("products", JSON.stringify(perfumeArray));
           localStorage.setItem("productsAdded", true);
         }
-      };
+      }
       addPerfumes();
     </script>
   </body>
