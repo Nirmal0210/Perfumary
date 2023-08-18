@@ -15,7 +15,7 @@
       crossorigin="anonymous"
     />
   </head>
-  <body>
+  <body onload="getUser()">
     <nav class="navbar-expand-lg navbar navbar-dark bg-dark">
       <div class="container-fluid">
         <div class="d-flex align-items-center">
@@ -138,11 +138,16 @@
       crossorigin="anonymous"
     ></script>
     <script>
-      let currentUser = JSON.parse(localStorage.getItem("currentUser"));
-      if (currentUser)
-        document.getElementById("userData").innerHTML +=
-          " " + currentUser.username.toUpperCase();
-      else window.location = "index.html";
+      let currentUser;
+      function getUser() {
+        debugger;
+        currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+        if (currentUser)
+          document.getElementById("userData").innerHTML +=
+            " " + currentUser.username.toUpperCase();
+        else window.location = "login.html";
+      }
       const addPerfumes = () => {
         const perfumeArray = [
           {

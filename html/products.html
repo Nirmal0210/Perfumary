@@ -22,7 +22,7 @@
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
     ></script>
   </head>
-  <body>
+  <body onload="getUser()">
     <nav class="navbar navbar-expand-lg bg-dark">
       <div class="container-fluid">
         <div class="d-flex align-items-center">
@@ -107,12 +107,15 @@
     <script>
       // Get Currentuser and Store in localstorage
 
-      let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+      let currentUser;
+      function getUser() {
+        currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
-      if (currentUser)
-        document.getElementById("userData").innerHTML +=
-          " " + currentUser.username.toUpperCase();
-      else window.location = "index.html";
+        if (currentUser)
+          document.getElementById("userData").innerHTML +=
+            " " + currentUser.username.toUpperCase();
+        else window.location = "login.html";
+      }
       let products = JSON.parse(localStorage.getItem("products"));
 
       document.getElementById("userData").innerHTML +=
