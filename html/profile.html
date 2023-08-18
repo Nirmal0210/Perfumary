@@ -132,17 +132,16 @@
       function getUser() {
         currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
-        if (currentUser)
+        if (currentUser) {
           document.getElementById("userData").innerHTML +=
             " " + currentUser.username.toUpperCase();
-        else window.location = "login.html";
+          document.getElementById("email").value = currentUser.email;
+          document.getElementById("username").value = currentUser.username;
+          document.getElementById("password").value = currentUser.password;
+        } else window.location = "login.html";
       }
 
       const updateButton = document.getElementById("updateProfileButton");
-      document.getElementById("email").value = currentUser.email;
-      document.getElementById("username").value = currentUser.username;
-      document.getElementById("password").value = currentUser.password;
-
       const DB_NAME = "myDatabase";
       const DB_VERSION = 3;
       let db;

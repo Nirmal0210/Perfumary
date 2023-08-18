@@ -41,9 +41,14 @@
               <p>How to i get started lorem ipsum dolor at?</p>
 
               <div class="form-box">
-                <input type="email" placeholder="email" id="email" />
+                <input type="email" required placeholder="email" id="email" />
                 <br />
-                <input type="password" placeholder="password" id="password" />
+                <input
+                  type="password"
+                  required
+                  placeholder="password"
+                  id="password"
+                />
                 <br />
                 <button class="login-btn" onclick="loginUser()">
                   Login Now
@@ -82,45 +87,49 @@
           };
           // Function to login a user using email and password
           function loginUser() {
-            const transaction = db.transaction(["users"], "readonly");
-            const objectStore = transaction.objectStore("users");
-            const emailIndex = objectStore.index("email");
             const email = document.getElementById("email").value;
             const password = document.getElementById("password").value;
+            if (email == "" || password == "") {
+              alert("Please fill all the fields properly");
+            } else {
+              const transaction = db.transaction(["users"], "readonly");
+              const objectStore = transaction.objectStore("users");
+              const emailIndex = objectStore.index("email");
 
-            // Check if a user with the given email exists
-            const request = emailIndex.get(email);
+              // Check if a user with the given email exists
+              const request = emailIndex.get(email);
 
-            request.onsuccess = (event) => {
-              const user = event.target.result;
+              request.onsuccess = (event) => {
+                const user = event.target.result;
 
-              if (!user) {
-                console.error("User with the provided email does not exist");
-                return;
-              }
+                if (!user) {
+                  console.error("User with the provided email does not exist");
+                  return;
+                }
 
-              // Verify the password
-              if (user.password === password) {
-                console.log("Login successful");
-                let currentUser = {
-                  username: user.username,
-                  email: user.email,
-                  password: user.password,
-                };
-                localStorage.setItem(
-                  "currentUser",
-                  JSON.stringify(currentUser)
-                );
-                window.location = "index.html";
-                // Perform any additional actions after successful login, e.g., redirecting to a dashboard page.
-              } else {
-                console.error("Incorrect password");
-              }
-            };
+                // Verify the password
+                if (user.password === password) {
+                  console.log("Login successful");
+                  let currentUser = {
+                    username: user.username,
+                    email: user.email,
+                    password: user.password,
+                  };
+                  localStorage.setItem(
+                    "currentUser",
+                    JSON.stringify(currentUser)
+                  );
+                  window.location = "index.html";
+                  // Perform any additional actions after successful login, e.g., redirecting to a dashboard page.
+                } else {
+                  console.error("Incorrect password");
+                }
+              };
 
-            request.onerror = (event) => {
-              console.error("Error checking user login:", event.target.error);
-            };
+              request.onerror = (event) => {
+                console.error("Error checking user login:", event.target.error);
+              };
+            }
           }
         </script>
       </body>
