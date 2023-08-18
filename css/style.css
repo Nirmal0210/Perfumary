@@ -5,6 +5,10 @@ body {
   padding: 0;
   width: 100%;
 }
+/* Set the border color to the desired color */
+.navbar-toggler {
+  background-color: white !important;
+}
 
 main {
   padding: 0px !important;
