@@ -14,73 +14,18 @@
       integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
       crossorigin="anonymous"
     />
-    <style>
-      #cart-items {
-        margin-top: 20px;
-      }
-      .cart-item {
-        display: flex;
-        align-items: center;
-        margin-bottom: 20px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        border-radius: 15px;
-      }
-
-      .cart-item img {
-        width: 75px;
-        height: 75px;
-        margin-right: 20px;
-      }
-
-      .cart-item h3 {
-        flex: 1;
-        font-size: 20px;
-      }
-
-      .cart-item .quantity {
-        margin: 0px 20px;
-      }
-
-      .cart-item button {
-        background: #007bff;
-        color: #fff;
-        border: none;
-        padding: 10px 15px;
-        border-radius: 4px;
-        cursor: pointer;
-        margin: 0px 10px;
-      }
-      .pay-div {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      .pay-btn {
-        z-index: 1000;
-        font-size: 20px;
-        background-color: #007bff;
-        color: white;
-        border-radius: 15px;
-        position: fixed;
-        text-align: center;
-        bottom: 75px;
-        border: none;
-        padding: 15px;
-        width: 150px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 50px;
-        margin: auto;
-      }
-    </style>
+   
   </head>
   <body>
     <nav class="navbar-expand-lg navbar navbar-dark bg-dark">
       <div class="container-fluid">
         <div class="d-flex align-items-center">
-          <img src="../imgs/perfumary.png" class="nav-logo" alt="nav-logo" />
+          <img
+            src="../imgs/perfumary.png"
+            class="nav-logo"
+            onclick="window.location='index.html'"
+            alt="nav-logo"
+          />
           <h1 class="my-0 mx-2" id="userData"></h1>
         </div>
         <button
