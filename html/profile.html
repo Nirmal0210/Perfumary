@@ -100,6 +100,7 @@
                   type="submit"
                   id="updateProfileButton"
                   class="btn btn-primary"
+                  onclick="updateProfileButton()"
                 >
                   Update
                 </button>
@@ -163,7 +164,7 @@
         window.location.href = "login.html";
       }
 
-      updateButton.addEventListener("click", function () {
+      function updateProfileButton() {
         const email = document.getElementById("email").value;
         const username = document.getElementById("username").value;
         const password = document.getElementById("password").value;
@@ -176,7 +177,7 @@
         localStorage.setItem("currentUser", JSON.stringify(updatedData));
         // Perform actions to update and save profile changes in the database
         updateProfile("user1", updatedData);
-      });
+      }
 
       function updateProfile(key, data) {
         const transaction = db.transaction(["users"], "readwrite");
