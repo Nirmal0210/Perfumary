@@ -118,9 +118,6 @@
       }
       let products = JSON.parse(localStorage.getItem("products"));
 
-      document.getElementById("userData").innerHTML +=
-        " " + currentUser.username.toUpperCase();
-
       const addToBag = (id) => {
         let cartItem = JSON.parse(localStorage.getItem("cartItem")) || []; // Initialize as an array or load from localStorage
         products = JSON.parse(localStorage.getItem("products"));
