@@ -15,7 +15,7 @@
       crossorigin="anonymous"
     />
   </head>
-  <body>
+  <body onload="getUser()">
     <nav class="navbar-expand-lg navbar navbar-dark bg-dark">
       <div class="container-fluid">
         <div class="d-flex align-items-center">
@@ -98,12 +98,15 @@
     ></script>
     <!-- JS for the cart page -->
     <script>
-      let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+      let currentUser;
+      function getUser() {
 
-      if (currentUser)
-        document.getElementById("userData").innerHTML +=
-          " " + currentUser.username.toUpperCase();
-      else window.location = "index.html";
+        currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        if (currentUser)
+          document.getElementById("userData").innerHTML +=
+            " " + currentUser.username.toUpperCase();
+        else window.location = "login.html";
+      }
       let cartItems = JSON.parse(localStorage.getItem("cartItem"));
       let totalPay = 0;
       function generateCartItem(item) {
